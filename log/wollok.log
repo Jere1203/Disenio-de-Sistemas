@@ -1,5 +1,0 @@
-{"level":"info","message":"⌛ Building environment","timeElapsed":174,"timestamp":"2025-04-04T21:20:12.354Z"}
-{"level":"info","message":"onRequest - WORKSPACE_URI:file:///home/jeremias/Desktop/Facultad/Disenio-de-Sistemas","timestamp":"2025-04-04T21:20:12.357Z"}
-{"level":"info","message":"⌛ Validating Macowins/src/estado.wlk","timeElapsed":144,"timestamp":"2025-04-04T21:20:12.729Z"}
-{"level":"info","message":"⌛ Validating Macowins/src/ventas.wlk","timeElapsed":140,"timestamp":"2025-04-04T21:20:12.953Z"}
-{"level":"info","message":"⌛ Validating Macowins/src/prendas.wlk","timeElapsed":108,"timestamp":"2025-04-04T21:20:13.061Z"}
