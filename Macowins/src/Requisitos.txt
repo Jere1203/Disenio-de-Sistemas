@@ -1,0 +1,5 @@
+Requerimientos: 
+·Poder calcular el precio de una prenda
+·Poder conocer las ganancias de cada dia
+·Poder registrar las ventas de cada prenda
+·El sistema debe aplicar un cargo por pagos con tarjeta de credito
