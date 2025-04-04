@@ -11,9 +11,9 @@ class Efectivo {
     method venta(prendas) = prendas.forEach { unaPrenda => unaPrenda.precio() }
 }
 
-object credito inherits Efectivo {
-    var property cantidadCuotas = 0
-    var property coeficienteCuotas = 0
+class Credito inherits Efectivo {
+    var property cantidadCuotas
+    var property coeficienteCuotas
 
     override method venta(prendas) = super(prendas) + self.calculoCuotas(prendas)
 
