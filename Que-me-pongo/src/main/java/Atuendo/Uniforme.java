@@ -13,5 +13,10 @@ public class Uniforme {
     this.calzado = calzado;
   }
 
+  public static void fabricar(UniformeFactory unSastre) {
+    unSastre.fabricarPrendaSuperior();
+    unSastre.fabricarPrendaInferior();
+    unSastre.fabricarCalzado();
+  }
 
 }

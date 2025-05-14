@@ -1,91 +1,77 @@
 package Prenda;
 
-import java.awt.*;
+
+// La trama de una prenda puede ser un enum, todavía no tengo comportamiento definido para esos atributos por lo que
+// composición sería mucho.
+
+
+import java.util.Objects;
 
 public class Prenda {
   Color colorPrincipal;
   Color colorSecundario;
-  Material materialPrenda;
+  TipoMaterial materialPrenda;
   TipoPrenda tipoPrenda;
   Trama trama;
 
-  public Prenda(TipoPrenda tipoPrenda, Material materialPrenda, Color colorPrincipal, Color colorSecundario) {
-    validarConstructor(tipoPrenda, materialPrenda, colorPrincipal);
+  public Prenda(TipoPrenda tipoPrenda, TipoMaterial materialPrenda, Color colorPrincipal, Color colorSecundario, Trama trama) {
+    //validarConstructor(tipoPrenda, materialPrenda, colorPrincipal);
     this.tipoPrenda = tipoPrenda;
     this.materialPrenda = materialPrenda;
-    this.trama = Trama.Lisa;
+    this.trama = Objects.requireNonNullElse(trama, Trama.LISA);
     this.colorPrincipal = colorPrincipal;
     this.colorSecundario = colorSecundario;
   }
 
-  void setTrama(Trama unaTrama) { trama = unaTrama; }
+  public Trama getTrama() {
+    return this.trama;
+  }
 
-  void validarConstructor(TipoPrenda tipoPrenda, Material materialPrenda, Color colorPrincipal) {
-    if (tipoPrenda == null) {
-      throw new PrendaInvalidaException("Falta tipo de prenda");
-    }
-    if (materialPrenda == null) {
-      throw new PrendaInvalidaException("Falta material de la prenda");
-    }
-    if (colorPrincipal == null) {
-      throw new PrendaInvalidaException("Falta color principal de la prenda");
-    }
+  void setTrama(Trama unaTrama) {
+    trama = unaTrama;
   }
 
   // Como usuario de QuéMePongo, quiero evitar que haya prendas sin tipo, tela, categoría o color primario.
-  Categoria getCategoria() { return tipoPrenda.getCategoria(); }
+//  Categoria getCategoria() {
+//    return tipoPrenda.getCategoria();
+//  }
 
-  Material getMaterial() { return materialPrenda; }
-
-  Color getColorPrincipal() { return colorPrincipal; }
-
-  void materialPrenda(Material unMaterial) { materialPrenda = unMaterial; }
-
-  void colorPrincipal(Color unColor) { colorPrincipal = unColor; }
-
-  void colorSecundario(Color unColor) { colorSecundario = unColor; }
-
-  public enum TipoPrenda {
-    CAMISA(Categoria.ParteSuperior),
-    REMERA(Categoria.ParteSuperior),
-    PANTALON(Categoria.ParteInferior);
-
-    public final Categoria categoria;
-
-    TipoPrenda(Categoria categoria) {
-      this.categoria = categoria;
-    }
-    public Categoria getCategoria() { return categoria; }
-
+  TipoMaterial getMaterial() {
+    return materialPrenda;
   }
 
-  public enum Categoria {
-    Accesorio,
-    Calzado,
-    ParteInferior,
-    ParteSuperior
+  Color getColorPrincipal() {
+    return colorPrincipal;
   }
 
-  public enum Material{
-    CUERO, LANA
+  void materialPrenda(TipoMaterial unMaterial) {
+    materialPrenda = unMaterial;
   }
 
-}
-
-class PrendaInvalidaException extends RuntimeException {
-  public PrendaInvalidaException(String motivo){
-    super("La prenda es invalida porque " + motivo);
+  void colorPrincipal(Color unColor) {
+    colorPrincipal = unColor;
   }
-}
 
-// La trama de una prenda puede ser un enum, todavía no tengo comportamiento definido para esos atributos por lo que
-// composición sería mucho.
-enum Trama {
-  Lisa,
-  Rayada,
-  Lunares,
-  Cuadros,
-  Estampado
+  void colorSecundario(Color unColor) {
+    colorSecundario = unColor;
+  }
+
+//  public enum TipoPrenda {
+//    CAMISA(Categoria.ParteSuperior),
+//    REMERA(Categoria.ParteSuperior),
+//    PANTALON(Categoria.ParteInferior);
+//
+//    public final Categoria categoria;
+//
+//    TipoPrenda(Categoria categoria) {
+//      this.categoria = categoria;
+//    }
+//
+//    public Categoria getCategoria() {
+//      return categoria;
+//    }
+//
+//  }
 }
 
 // -Como usuario de QuéMePongo, quiero crear una prenda especificando primero de qué tipo es.
