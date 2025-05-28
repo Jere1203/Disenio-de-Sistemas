@@ -9,8 +9,8 @@ public class MotorSugerenciasRopaInformal implements MotorSugerencias {
   @Override
   public Sugerencia generarSugerencia(Usuario usuario) {
     List<Prenda> prendasValidas = this.getPrendasValidas(usuario);
-    Prenda prendaInferior = prendasValidas.stream().filter(prenda -> prenda.esInferior()).toList().get(0);
-    Prenda prendaSuperior = prendasValidas.stream().filter(prenda -> prenda.esSuperior()).toList().get(0);
+    Prenda prendaInferior = prendasValidas.stream().filter(prenda -> prenda.esInferior()).findFirst().orElse(null);
+    Prenda prendaSuperior = prendasValidas.stream().filter(prenda -> prenda.esSuperior()).findFirst().orElse(null);
     Prenda calzado = prendasValidas.stream().filter(prenda -> prenda.esCalzado()).toList().get(0);
 
     return new Sugerencia(prendaSuperior, prendaInferior, calzado);
@@ -20,6 +20,6 @@ public class MotorSugerenciasRopaInformal implements MotorSugerencias {
     if (usuario.getEdad() > 55) {
       return usuario.getPrendas().stream().filter(prenda -> !prenda.esInformal()).toList();
     }
-    return usuario.getPrendas();
+    return null;
   }
 }

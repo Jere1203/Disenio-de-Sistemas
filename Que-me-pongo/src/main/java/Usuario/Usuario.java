@@ -31,4 +31,11 @@ public class Usuario {
     this.prendas = prendas;
   }
 
+  public MotorSugerencias getMotorSugerencias() {
+    return motorSugerencias;
+  }
+
+  public void setMotorSugerencias(MotorSugerencias motorSugerencias) {
+    this.motorSugerencias = motorSugerencias;
+  }
 }

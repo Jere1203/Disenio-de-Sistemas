@@ -16,6 +16,8 @@ import org.junit.jupiter.api.Assertions;
 
 public class SugerenciasTest {
   MotorSugerenciasRopaInformal motorSugerenciasInformal = new MotorSugerenciasRopaInformal();
+  MotorSugerenciasEstandar motorSugerenciasEstandar = new MotorSugerenciasEstandar();
+
   Usuario usuarioMayor = new Usuario(56, motorSugerenciasInformal);
   Usuario usuarioJoven = new Usuario(21, new MotorSugerenciasEstandar());
 
@@ -70,9 +72,9 @@ public class SugerenciasTest {
     List<Prenda> prendas = Arrays.asList(zapatos, camisa, jean);
     usuarioMayor.setPrendas(prendas);
     Sugerencia sugerencia = usuarioMayor.generarSugerencia();
-    Assertions.assertEquals(remera, sugerencia.getPrendaSuperior());
+    Assertions.assertEquals(camisa, sugerencia.getPrendaSuperior());
     Assertions.assertEquals(jean, sugerencia.getPrendaInferior());
-    Assertions.assertEquals(zapatillas, sugerencia.getCalzado());
+    Assertions.assertEquals(zapatos, sugerencia.getCalzado());
   }
 
   @Test
@@ -85,4 +87,19 @@ public class SugerenciasTest {
     Assertions.assertEquals(zapatillas, sugerencia.getCalzado());
   }
 
+  @Test
+  public void seCambiaConExitoElMotorDeSugerencias() {
+    Assertions.assertEquals(motorSugerenciasInformal, usuarioMayor.getMotorSugerencias());
+    usuarioJoven.setMotorSugerencias(motorSugerenciasEstandar);
+    Assertions.assertEquals(motorSugerenciasEstandar, usuarioJoven.getMotorSugerencias());
+  }
+
+  @Test
+  public void elMotorDeSugerenciasInformalFiltraLasPrendasInformales() {
+    usuarioMayor.setPrendas(Arrays.asList(zapatos, remera, jogging));
+    Sugerencia sugerencia = usuarioMayor.generarSugerencia();
+    Assertions.assertEquals(zapatos, sugerencia.getCalzado());
+    Assertions.assertNull(sugerencia.getPrendaSuperior());
+    Assertions.assertNull(sugerencia.getPrendaInferior());
+  }
 }
