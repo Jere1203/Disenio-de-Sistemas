@@ -13,65 +13,37 @@ public class Prenda {
   TipoMaterial materialPrenda;
   TipoPrenda tipoPrenda;
   Trama trama;
+  Formalidad formalidad;
 
-  public Prenda(TipoPrenda tipoPrenda, TipoMaterial materialPrenda, Color colorPrincipal, Color colorSecundario, Trama trama) {
+  public Prenda(TipoPrenda tipoPrenda, TipoMaterial materialPrenda, Color colorPrincipal, Color colorSecundario, Trama trama, Formalidad formalidad) {
     //validarConstructor(tipoPrenda, materialPrenda, colorPrincipal);
     this.tipoPrenda = tipoPrenda;
     this.materialPrenda = materialPrenda;
     this.trama = Objects.requireNonNullElse(trama, Trama.LISA);
     this.colorPrincipal = colorPrincipal;
     this.colorSecundario = colorSecundario;
+    this.formalidad = formalidad;
   }
 
   public Trama getTrama() {
     return this.trama;
   }
 
-  void setTrama(Trama unaTrama) {
-    trama = unaTrama;
+  public boolean esInformal() {
+    return formalidad == Formalidad.INFORMAL;
   }
 
-  // Como usuario de QuéMePongo, quiero evitar que haya prendas sin tipo, tela, categoría o color primario.
-//  Categoria getCategoria() {
-//    return tipoPrenda.getCategoria();
-//  }
-
-  TipoMaterial getMaterial() {
-    return materialPrenda;
+  public boolean esSuperior() {
+    return tipoPrenda.categoria == Categoria.ParteSuperior;
   }
 
-  Color getColorPrincipal() {
-    return colorPrincipal;
+  public boolean esInferior() {
+    return tipoPrenda.categoria == Categoria.ParteInferior;
   }
 
-  void materialPrenda(TipoMaterial unMaterial) {
-    materialPrenda = unMaterial;
+  public boolean esCalzado() {
+    return tipoPrenda.categoria == Categoria.Calzado;
   }
-
-  void colorPrincipal(Color unColor) {
-    colorPrincipal = unColor;
-  }
-
-  void colorSecundario(Color unColor) {
-    colorSecundario = unColor;
-  }
-
-//  public enum TipoPrenda {
-//    CAMISA(Categoria.ParteSuperior),
-//    REMERA(Categoria.ParteSuperior),
-//    PANTALON(Categoria.ParteInferior);
-//
-//    public final Categoria categoria;
-//
-//    TipoPrenda(Categoria categoria) {
-//      this.categoria = categoria;
-//    }
-//
-//    public Categoria getCategoria() {
-//      return categoria;
-//    }
-//
-//  }
 }
 
 // -Como usuario de QuéMePongo, quiero crear una prenda especificando primero de qué tipo es.

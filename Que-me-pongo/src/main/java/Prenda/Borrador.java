@@ -9,6 +9,7 @@ public class Borrador {
   TipoMaterial materialPrenda;
   TipoPrenda tipoPrenda;
   Trama trama;
+  Formalidad formalidad;
 
   public void especificarTipo(TipoPrenda tipoPrenda) {
     this.tipoPrenda = Objects.requireNonNull(tipoPrenda);
@@ -31,9 +32,13 @@ public class Borrador {
     this.colorSecundario = Objects.requireNonNull(colorSecundario);
   }
 
+  public void especificarFormalidad(Formalidad formalidad) {
+    this.formalidad = Objects.requireNonNull(formalidad);
+  }
+
   public Prenda crearPrenda() {
     validarParametros();
-    return new Prenda(this.tipoPrenda, this.materialPrenda, this.colorPrincipal, this.colorSecundario, this.trama);
+    return new Prenda(this.tipoPrenda, this.materialPrenda, this.colorPrincipal, this.colorSecundario, this.trama, this.formalidad);
   }
 
   void validarParametros() {
