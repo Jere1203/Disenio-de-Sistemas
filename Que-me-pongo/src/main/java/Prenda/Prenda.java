@@ -14,6 +14,7 @@ public class Prenda {
   TipoPrenda tipoPrenda;
   Trama trama;
   Formalidad formalidad;
+  Integer tempMaxima;
 
   public Prenda(TipoPrenda tipoPrenda, TipoMaterial materialPrenda, Color colorPrincipal, Color colorSecundario, Trama trama, Formalidad formalidad) {
     //validarConstructor(tipoPrenda, materialPrenda, colorPrincipal);
@@ -43,6 +44,10 @@ public class Prenda {
 
   public boolean esCalzado() {
     return tipoPrenda.categoria == Categoria.Calzado;
+  }
+
+  public boolean aptaParaTemperatura(Integer temperatura) {
+    return this.tempMaxima > temperatura;
   }
 }
 

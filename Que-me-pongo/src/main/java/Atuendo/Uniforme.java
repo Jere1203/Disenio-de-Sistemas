@@ -19,4 +19,15 @@ public class Uniforme {
     unSastre.fabricarCalzado();
   }
 
+  public boolean aptaParaTemperatura(Integer temperatura) {
+    return this.prendasAptasParaTemperatura(temperatura);
+  }
+
+  private boolean prendasAptasParaTemperatura(Integer temperatura) {
+    return
+        this.parteSuperior.aptaParaTemperatura(temperatura)
+            && this.parteInferior.aptaParaTemperatura(temperatura)
+            && this.calzado.aptaParaTemperatura(temperatura);
+  }
 }
+
