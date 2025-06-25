@@ -1,14 +1,17 @@
 package Usuario;
 
 import Atuendo.Sugerencia;
+import Guardarropas.Guardarropas;
 import Prenda.MotorSugerencias;
 import Prenda.Prenda;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
   List<Prenda> prendas;
   Integer edad;
   MotorSugerencias motorSugerencias;
+  List<Guardarropas> guardarropas = new ArrayList<>();
 
   public Usuario(Integer edad, MotorSugerencias motorSugerencias) {
     this.edad = edad;
@@ -37,5 +40,13 @@ public class Usuario {
 
   public void setMotorSugerencias(MotorSugerencias motorSugerencias) {
     this.motorSugerencias = motorSugerencias;
+  }
+
+  public void agregarGuardarropas(Guardarropas unGuardarropas) {
+    guardarropas.add(unGuardarropas);
+  }
+
+  public void quitarGuardarropas(Guardarropas unGuardarropas) {
+    guardarropas.remove(unGuardarropas);
   }
 }
