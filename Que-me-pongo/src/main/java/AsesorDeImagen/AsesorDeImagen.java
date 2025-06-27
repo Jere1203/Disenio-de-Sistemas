@@ -7,7 +7,7 @@ import ServicioMeteorologico.ServicioMeteorologicoAccuWeather;
 import java.util.List;
 
 public class AsesorDeImagen {
-  private ServicioMeteorologicoAccuWeather servicioMeteorologico;
+  private final ServicioMeteorologicoAccuWeather servicioMeteorologico;
 
   public AsesorDeImagen(ServicioMeteorologicoAccuWeather servicioMeteorologico) {
     this.servicioMeteorologico = servicioMeteorologico;
@@ -23,4 +23,5 @@ public class AsesorDeImagen {
         .findFirst()
         .get();
   }
+
 }

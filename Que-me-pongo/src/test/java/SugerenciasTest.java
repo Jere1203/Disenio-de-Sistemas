@@ -1,4 +1,4 @@
-import Atuendo.Sugerencia;
+import Sugerencia.Sugerencia;
 import Prenda.Categoria;
 import Prenda.Color;
 import Prenda.Formalidad;

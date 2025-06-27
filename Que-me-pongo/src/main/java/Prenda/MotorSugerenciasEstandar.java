@@ -1,6 +1,6 @@
 package Prenda;
 
-import Atuendo.Sugerencia;
+import Sugerencia.Sugerencia;
 import Usuario.Usuario;
 import java.util.List;
 

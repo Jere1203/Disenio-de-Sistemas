@@ -1,9 +1,9 @@
 package Usuario;
 
-import Atuendo.Sugerencia;
 import Guardarropas.Guardarropas;
 import Prenda.MotorSugerencias;
 import Prenda.Prenda;
+import Sugerencia.Sugerencia;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,14 +12,28 @@ public class Usuario {
   Integer edad;
   MotorSugerencias motorSugerencias;
   List<Guardarropas> guardarropas = new ArrayList<>();
-
-  public Usuario(Integer edad, MotorSugerencias motorSugerencias) {
+  Sugerencia sugerenciaDiaria;
+  String email;
+  public Usuario(Integer edad, MotorSugerencias motorSugerencias, String email) {
     this.edad = edad;
     this.motorSugerencias = motorSugerencias;
+    this.email = email;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public Sugerencia getSugerenciaDiaria() {
+    return this.sugerenciaDiaria;
   }
 
   public Sugerencia generarSugerencia() {
     return this.motorSugerencias.generarSugerencia(this);
+  }
+
+  public void calcularSugerenciaDiaria() {
+    this.sugerenciaDiaria = generarSugerencia();
   }
 
   public Integer getEdad() {

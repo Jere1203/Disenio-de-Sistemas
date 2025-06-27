@@ -1,8 +1,8 @@
 package Prenda;
 
-import Atuendo.Sugerencia;
+import Sugerencia.Sugerencia;
 import Usuario.Usuario;
 
 public interface MotorSugerencias {
-  Sugerencia generarSugerencia(Usuario usuario);
+  public Sugerencia generarSugerencia(Usuario usuario);
 }

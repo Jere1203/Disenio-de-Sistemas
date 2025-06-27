@@ -1,4 +1,4 @@
-package Atuendo;
+package Sugerencia;
 
 import Prenda.Prenda;
 
