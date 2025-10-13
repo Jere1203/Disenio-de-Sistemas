@@ -1,15 +1,15 @@
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-import Atuendo.Uniforme;
-import Atuendo.UniformeSanJuan;
-import Prenda.Borrador;
-import Prenda.Categoria;
-import Prenda.Color;
-import Prenda.Prenda;
-import Prenda.TipoMaterial;
-import Prenda.TipoPrenda;
-import Prenda.Trama;
+import model.Atuendo.Uniforme;
+import model.Atuendo.UniformeSanJuan;
+import model.Prenda.Borrador;
+import model.Prenda.Categoria;
+import model.Prenda.Color;
+import model.Prenda.Prenda;
+import model.Prenda.TipoMaterial;
+import model.Prenda.TipoPrenda;
+import model.Prenda.Trama;
 import org.junit.Test;
 
 public class QMPTest {
