@@ -18,8 +18,8 @@ public class SugerenciasTest {
   MotorSugerenciasRopaInformal motorSugerenciasInformal = new MotorSugerenciasRopaInformal();
   MotorSugerenciasEstandar motorSugerenciasEstandar = new MotorSugerenciasEstandar();
 
-  Usuario usuarioMayor = new Usuario(56, motorSugerenciasInformal);
-  Usuario usuarioJoven = new Usuario(21, new MotorSugerenciasEstandar());
+  Usuario usuarioMayor = new Usuario(56, motorSugerenciasInformal, "mail@gmail.com", "aaa");
+  Usuario usuarioJoven = new Usuario(21, new MotorSugerenciasEstandar(), "mail@gmail.com", "bbb");
 
   Prenda zapatos = new Prenda(new TipoPrenda(Categoria.Calzado),
       TipoMaterial.CUERO,
