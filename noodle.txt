@@ -1,0 +1,169 @@
+class Docente {
+	List<Grupo> gruposACargo; 
+	
+	public Docente(){}
+	
+	List<Grupo> crearGrupos(int cantidad, int tamanio) {
+		for(i : cantidad) {
+			gruposACargo.add(new Grupo())
+		}
+	}
+	
+	void cerrarGrupo(Grupo grupo){
+		grupo.cerrar();
+	}
+	
+	void aprobarSolicitud(Solicitud solicitud) {
+		solicitud.aprobar();
+	}
+	
+}
+
+interface Solicitud {
+	void aceptar();// No me sirve modelar el rechazo de la solicitud porque no agrega comportamiento a la clase.
+}
+
+class SolicitudInscripcion implements Solicitud {
+	Estudiante solicitante;
+	Grupo grupoSolicitado;
+	public SolicitudInscripcion(Estudiante solicitante, grupoSolicitado) {
+		this.solicitante = solicitante;
+		this.grupoSolicitado = grupoSolicitado;
+	}
+	
+	void aceptar() {
+		grupoSolicitado.aceptarInscripcion(solicitante);
+	}
+}
+
+class SolicitudBaja implements Solicitud {
+	Estudiante solicitante;
+	Grupo grupoSolicitado;
+	public SolicitudBaja(Estudiante solicitante, Grupo grupoSolicitado) {
+		this.solicitante = solicitante;
+		this.grupoSolicitado = grupoSolicitado;
+	}
+	
+	void aceptar() {
+		grupoSolicitado.aceptarBaja(solicitante);
+	}
+}
+
+class Estudiante implements InteresadoEnGrupo {
+	String username;
+	String email;
+	MailSender sender;
+	
+	public Estudiante(String username, String email){
+		this.username = username;
+		this.email = email;
+	}
+	
+	void setMailSender(MailSender sender) {
+		this.sender = sender;
+	}
+	
+	void unirseAGrupo(Grupo grupo){
+		grupo.agregarEstudiante(this);
+	}	
+	
+	void darseDeBajaDe(Grupo grupo) {
+		grupo.quitarEstudiante(this);
+	}
+	
+	// Quizas se podria implementar el encabezado del mail con un enum para evitar typos en el string, igual por como esta el requerimiento no lo veo tan urgente.
+	void notificarCierre() {
+		sender.send(email, "Cierre de grupo", "Se le envia este correo para notificarle que su grupo se ha cerrado y bla bla bla...");
+	}
+	
+	void notificarInscripcion() {
+		sender.send(email, "Nueva inscripcion al grupo", "Se ha agregado un integrante a tu grupo");
+	}
+	
+	void notificarBaja() {
+		sender.send(email, "Nueva baja en el grupo", "Se fue uno che");
+	}
+}
+
+class Grupo{ //Mi clase observada
+	Asignacion asignacionActual;
+	List<Estudiante> integrantes;
+	List<Solicitud> solicitudes;
+	Bool estaCerrado;
+	String nombre;
+	GuitabSDK sdk;
+	public Grupo(String nombre, GuitabSDK sdk) {
+		this.estaCerrado = false;
+		this.nombre = nombre;
+		this.sdk = sdk;
+	}
+	
+	void agregarEstudiante(Estudiante estudiante){
+		if(!estaCerrado) {
+			integrantes.add(estudiante);
+			integrantes.forEach(e -> e.notificarInscripcion());		
+		} else {
+			solicitudes.add(new SolicitudInscripcion(estudiante, this));
+		}
+	}
+	void quitarEstudiante(Estudiante estudiante) {
+		integrantes.remove(estudiante);
+		integrantes.forEach(e -> e.notificarBaja());
+	}
+	void cerrar(){
+		estaCerrado = true;
+		integrantes.forEach(e -> e.notificarCierre());
+		sdk.crearRepositorioConAcceso(nombre + "_repositorio", integrantes);
+	}
+	
+	void aceptarInscripcion(Estudiante estudiante) {
+		integrantes.add(estudiante);
+	}
+	
+	void aceptarBaja(Estudiante estudiante) {
+		integrantes.remove(estudiante);
+	}
+}
+
+class MailSender {
+	void send(address, subject, body);
+}
+
+interface GuitabSDK{
+	crearRepositorioConAcceso(String nombre, List<String> usernames);
+	darAcceso(String nombreRepo, String username);
+	quitarAcceso(String nombreRepo, String username);
+}
+
+interface InteresadoEnGrupo{
+	void notificarCierre();
+	void notificarInscripcion();
+	void notificarBaja();
+}
+
+// Puedo plantear un observer a los grupos y que dispare acciones segun la actividad
+// Ej: si se cierra se crea un repo, si entra alguien avisa a los integrantes.
+// Para el ultimo requerimiento voy a implementar un crontab y setearlo para que cada 
+// semana ejecute darAcceso() sobre un item de una lista de actividades.
+
+// Como no tengo una clase Repositorio para los grupos entonces cuando instancie la clase le indico a qué grupos mandarlo.
+
+class Asignacion{
+	int entregas;
+	List<Grupo> grupos;
+	public Asignacion(int entregas, List<Grupo> grupos) {
+		this.entregas = entregas;
+		this.grupos = grupos;
+	}
+	
+	biri biri
+}
+
+------------ EN EL MAIN ---------- // AHORA QUE PIENSO CREO QUE ES MEJOR TENER UNA CLASE REPOSITORIO PERO NO TENGO GANAS DE REHACER MEDIO EJ, CUANDO VEA EL RESUELTO ELIJO QUE HACER.
+void static main([]args){
+	List<Asignacion> asignacionesPendientes;
+	List<Grupo> grupos;
+	
+	grupos.forEach(g -> g.agregarAsignacion(asignacionesPendientes.get(0));
+	asignacionesPendientes.remove(0);
+}

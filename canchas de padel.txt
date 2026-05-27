@@ -1,0 +1,85 @@
+@Entity
+public class Jugador {
+ @Id
+ @GeneratedValue(ID)
+ long jugador_id;
+ 
+ String nombre;
+ String apellido;
+ String Domicilio;
+ LocalDateTime fecha_nacimiento;
+ @ManyToOne
+ @JoinColumn(name = 'paleta_id')
+ Paleta jugador_paleta;
+ 
+ @ManyToMany(mappedBy = 'jugadores')
+ List<Cancha> canchas;
+}
+
+@Entity
+public class Paleta {
+ @Id
+ @GeneratedValue(ID)
+ long paleta_id;
+ 
+ String nombre_paleta;
+ int grosor;
+ @ManyToOne
+ @JoinColumn(name = 'codigo_color')
+ Color color;
+ 
+ @ManyToOne
+ Constructor constructor;
+}
+
+@Entity
+public class Color {
+ @Id
+ @GeneratedValue(ID)
+ Long codigo_color;
+ String detalle_color;
+}
+
+@Entity
+public class Constructor {
+ @Id
+ @GeneratedValue(ID)
+ Long constructor_id;
+ 
+ String nombre;
+ String domicilio;
+}
+
+@Entity
+public class Cancha {
+ @Id
+ @GeneratedValue(ID)
+ Long cancha_id;
+ 
+ @ManyToMany
+ @JoinTable(name = 'jugador_x_cancha')
+ List<Jugador> jugadores;
+ String nombre_cancha;
+ 
+ @ManyToOne
+ Color color;
+ Boolean iluminacion;
+}
+
+@Entity
+public class Partido {
+ @Id
+ @GeneratedValue(ID)
+ Long partido_id;
+ 
+ LocalDateTime inicio;
+ LocalDateTime fin;
+ 
+ @ManyToOne
+ @JoinColumn(name = 'jugador_id')
+ Jugador jugador;
+ 
+ @ManyToOne
+ @JoinColumn(name = 'cancha_id')
+ Cancha cancha;
+}
